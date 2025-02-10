@@ -566,39 +566,53 @@
         const words = ["Communication", "Stratégies", "Événementiel", "Influence", "Production", "Conciergerie"];
         let index = 0;
         let letterIndex = 0;
-        let direction = 1;
-        let currentWord = words[0];
-        let interval;
+        let isErasing = false;
 
+        // Fonction principale de gestion du texte
         function typeWriter() {
             const word = words[index];
-            if (letterIndex < word.length) {
-                $("#typing-text").text(
-                    $("#typing-text").text() + word.charAt(letterIndex)
-                );
-                letterIndex++;
-            } else {
-                clearInterval(interval);
-                interval = setInterval(eraseText, 150); // Delay between typing and erasing
-            }
-        }
 
-        function eraseText() {
-            if (letterIndex >= 0) {
-                const text = currentWord.substring(0, letterIndex);
-                $("#typing-text").text(text);
+            // Effacement du texte
+            if (isErasing) {
                 letterIndex--;
-            } else {
-                clearInterval(interval);
-                index = (index + direction) % words.length;
-                if (index < 0) index = words.length - 1;
-                currentWord = words[index];
-                interval = setInterval(typeWriter, 150); // Delay before typing next word
+                updateText(word.substring(0, letterIndex));
+
+                if (letterIndex === 0) {
+                    isErasing = false;
+                    index = (index + 1) % words.length;  // Passage au mot suivant
+                    setTimeout(typeWriter, 500);         // Pause avant de réécrire
+                    return;
+                }
             }
+            // Écriture du texte
+            else {
+                letterIndex++;
+                updateText(word.substring(0, letterIndex));
+
+                if (letterIndex === word.length) {
+                    isErasing = true;
+                    setTimeout(typeWriter, 1000);        // Pause avant d'effacer
+                    return;
+                }
+            }
+
+            // Boucle du processus avec un léger délai
+            setTimeout(typeWriter, 150);
         }
 
-        interval = setInterval(typeWriter, 150); // Initial delay before typing starts
+        // Fonction pour mettre à jour le texte en s'assurant qu'il reste propre
+        function updateText(content) {
+            const textContainer = $("#typing-text");
+
+            // Réinitialisation du conteneur à chaque mise à jour
+            textContainer.text('');  // Assure qu'il n'y a pas de décalage ou de texte résiduel
+            textContainer.append(content);
+        }
+
+        // Lancer le typewriter
+        typeWriter();
     });
+
     // Type text area end here ***
 
 

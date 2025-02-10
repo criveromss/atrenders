@@ -57,7 +57,7 @@
         h1 {
             margin-top: 20px;
             color: $white;
-            
+
             @include breakpoint (max-xxl){
                 font-size: 170px;
             }
@@ -132,7 +132,7 @@
             img {
                 @include transition;
             }
-            
+
             &:hover {
                 background-color: $white;
                img {
@@ -140,7 +140,7 @@
                }
             }
         }
-        
+
         p {
             text-transform: uppercase;
             font-weight: 500;
@@ -240,7 +240,7 @@
 
             img {
                 margin-left: 20px;
-                
+
             }
         }
     }
@@ -278,7 +278,7 @@
                 line-height: 100%;
             }
 
-            
+
             @include breakpoint (max-sm){
                 font-size: 60px;
             }
@@ -292,7 +292,7 @@
             display: flex;
             align-items: center;
             gap: 25px;
-    
+
             .icon {
                 width: 104px;
                 height: 104px;
@@ -301,11 +301,11 @@
                 border-radius: 104px;
                 border: 1px solid #3F3F3F;
                 text-align: center;
-    
+
                 img {
                     @include transition;
                 }
-                
+
                 &:hover {
                     background-color: $white;
                    img {
@@ -313,7 +313,7 @@
                    }
                 }
             }
-            
+
             p {
                 text-transform: uppercase;
                 font-weight: 500;
@@ -423,7 +423,7 @@
             img {
                 @include transition;
             }
-            
+
             &:hover {
                 background-color: $white;
                img {
@@ -712,7 +712,7 @@
         @include breakpoint (max-xxl){
             margin-top: 0;
             margin-right: 0;
- 
+
             img {
                  @include imgw;
             }
@@ -723,3 +723,6 @@
         }
     }
 }
+
+
+
